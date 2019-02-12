@@ -55,7 +55,7 @@ const index = () => {
           color: #10316b;
         }
         .formContainer .formInput input::placeholder {
-          color: #10316b;
+          color: #5d7baf;
         }
         .formContainer button {
           border: 1px solid white;

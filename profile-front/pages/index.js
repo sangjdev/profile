@@ -3,23 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as inputActions from '../reducers/members';
 import MainContainer from '../components/Main/MainContainer';
-
+import Modal from '../components/Modal';
 class Index extends Component {
   render() {
     // const { value, InputActions } = this.props;
     // console.log(this.props);
     return (
       <Fragment>
-        {/* <h1>프로필 회원가입</h1>
-        <h2>Hello {value}!</h2>
-        <button
-          onClick={() => {
-            InputActions.setInput();
-            console.log('valueeee', value);
-          }}
-        >
-          12424
-        </button> */}
         <MainContainer />
         <style jsx global>{`
           body {

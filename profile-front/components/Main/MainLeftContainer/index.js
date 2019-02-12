@@ -1,12 +1,18 @@
 import React from 'react';
 
-const index = () => {
+const index = ({ modalActions }) => {
   return (
     <div className="containerLeft">
       <div className="signIn">
         <h1>안녕하세요!</h1>
         <p>포트폴리오 프로젝트 프로필의 소개입니다. 프로젝트 프로필</p>
-        <button>로그인</button>
+        <button
+          onClick={() => {
+            modalActions.openModal();
+          }}
+        >
+          프로필 보러 가기
+        </button>
       </div>
 
       <style jsx>{`
