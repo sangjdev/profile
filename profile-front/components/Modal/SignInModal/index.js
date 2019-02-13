@@ -1,13 +1,13 @@
 import React from 'react';
 
-const index = ({ modalOpen, modalActions }) => {
+const index = ({ signInModalOpen, modalActions }) => {
   return (
-    <div className="modal">
+    <div className="modal signIn">
       <div className="modal-content">
         <span
           className="close"
           onClick={() => {
-            modalActions.closeModal();
+            modalActions.closeSignInModal();
           }}
         >
           &times;
@@ -24,7 +24,6 @@ const index = ({ modalOpen, modalActions }) => {
       </div>
       <style jsx global>{`
         .modal {
-          display: ${modalOpen ? 'block' : 'none'};
           position: fixed;
           z-index: 1;
           left: 0;
@@ -35,6 +34,9 @@ const index = ({ modalOpen, modalActions }) => {
           background-color: rgb(0, 0, 0); /* Fallback color */
           background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
           text-align: center;
+        }
+        .signIn {
+          display: ${signInModalOpen ? 'block' : 'none'};
         }
         .modal h2 {
           font-size: 2.5rem;
@@ -58,6 +60,13 @@ const index = ({ modalOpen, modalActions }) => {
           font-size: 1.3rem;
           font-weight: 700;
           color: #10316b;
+        }
+        .modal input:focus::placeholder {
+          transition: all 0.1s ease-in;
+          color: transparent;
+        }
+        .modal input::placeholder {
+          color: #5d7baf;
         }
         .modal button {
           border: 1px solid white;

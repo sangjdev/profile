@@ -1,16 +1,15 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as inputActions from '../reducers/members';
 import MainContainer from '../components/Main/MainContainer';
-import Modal from '../components/Modal';
+
 class Index extends Component {
+  static async getInitialProps({ req }) {
+    const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+    return { userAgent };
+  }
   render() {
-    // const { value, InputActions } = this.props;
-    // console.log(this.props);
     return (
       <Fragment>
-        <MainContainer />
+        <MainContainer {...this.props} />
         <style jsx global>{`
           body {
             margin: 0;
@@ -21,13 +20,4 @@ class Index extends Component {
   }
 }
 
-export default connect()(Index);
-// state => {
-//   console.log('satteat,e', state);
-//   return {
-//     value: state.members.value
-//   };
-// },
-//   dispatch => ({
-//     InputActions: bindActionCreators(inputActions, dispatch)
-//   });
+export default Index;

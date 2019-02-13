@@ -3,12 +3,12 @@ import React from 'react';
 const index = ({ modalActions }) => {
   return (
     <div className="containerLeft">
-      <div className="signIn">
+      <div className="left">
         <h1>안녕하세요!</h1>
         <p>포트폴리오 프로젝트 프로필의 소개입니다. 프로젝트 프로필</p>
         <button
           onClick={() => {
-            modalActions.openModal();
+            modalActions.openSignInModal();
           }}
         >
           프로필 보러 가기
@@ -26,7 +26,7 @@ const index = ({ modalActions }) => {
           //   animation-duration: 0.5s;
           //   animation-timing-function: ease-in;
         }
-        .containerLeft .signIn {
+        .containerLeft .left {
           width: 75%;
           text-align: center;
         }
