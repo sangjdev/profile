@@ -1,12 +1,15 @@
+import logger from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
+import promise from 'redux-promise-middleware';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
 import index from '../reducers/index';
-const CreateStore = applyMiddleware(thunk)(createStore);
 
-export default CreateStore(
-  index,
-  typeof window !== 'undefined' &&
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const makeStore = (initialState, options) => {
+  const store = createStore(
+    index,
+    initialState,
+    composeWithDevTools(applyMiddleware(logger, promise))
+  );
+  return store;
+};
+export default makeStore;

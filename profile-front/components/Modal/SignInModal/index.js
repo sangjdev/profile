@@ -1,6 +1,6 @@
 import React from 'react';
 
-const index = ({ signInModalOpen, modalActions }) => {
+const index = ({ modal, modalActions }) => {
   return (
     <div className="modal signIn">
       <div className="modal-content">
@@ -36,7 +36,7 @@ const index = ({ signInModalOpen, modalActions }) => {
           text-align: center;
         }
         .signIn {
-          display: ${signInModalOpen ? 'block' : 'none'};
+          display: ${modal.signInModalOpen ? 'block' : 'none'};
         }
         .modal h2 {
           font-size: 2.5rem;

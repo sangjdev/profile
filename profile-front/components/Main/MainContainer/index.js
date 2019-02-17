@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import MainLeftContainer from '../MainLeftContainer';
 import MainRightContainer from '../MainRightContainer';
 import SignInModal from '../../Modal/SignInModal';
@@ -7,21 +6,19 @@ import SignCompModal from '../../Modal/SignCompModal';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as modalActions from '../../../reducers/modal';
+import * as authActions from '../../../reducers/auth';
 
 const index = props => {
-  console.log(props);
   return (
     <div className="container">
       <MainLeftContainer modalActions={props.ModalActions} />
-      <MainRightContainer modalActions={props.ModalActions} />
-      <SignInModal
-        signInModalOpen={props.signInModalOpen}
+      <MainRightContainer
         modalActions={props.ModalActions}
+        authActions={props.AuthActions}
+        auth={props.auth}
       />
-      <SignCompModal
-        signCompModalOpen={props.signCompModalOpen}
-        modalActions={props.ModalActions}
-      />
+      <SignInModal modal={props.modal} modalActions={props.ModalActions} />
+      <SignCompModal modal={props.modal} modalActions={props.ModalActions} />
       <style jsx>{`
         .container {
           width: 100%;
@@ -35,11 +32,11 @@ const index = props => {
 export default connect(
   state => {
     return {
-      signInModalOpen: state.modal.signInModalOpen,
-      signCompModalOpen: state.modal.signCompModalOpen
+      ...state
     };
   },
   dispatch => ({
-    ModalActions: bindActionCreators(modalActions, dispatch)
+    ModalActions: bindActionCreators(modalActions, dispatch),
+    AuthActions: bindActionCreators(authActions, dispatch)
   })
 )(index);

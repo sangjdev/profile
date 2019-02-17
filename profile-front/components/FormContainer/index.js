@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Router from 'next/router';
+
 // import * as joi from 'joi';
 
 // const schema = Joi.object()
@@ -40,13 +40,15 @@ class index extends Component {
       password: e.target.value
     });
   };
-  onAlert = () => {
-    // console.log(this.state);
-    // console.log(this.props);
-    const { modalActions } = this.props;
-    modalActions.openSignCompModal();
-    // alert('회원가입이 완료되었습니다. 프로필 페이지로 이동합니다');
-    // Router.push('/profile');
+  onAlert = async () => {
+    const { modalActions, authActions } = this.props;
+    try {
+      // 폼 유효성 검사
+      const res = await authActions.setRegister(1);
+      modalActions.openSignCompModal();
+    } catch (e) {
+      console.log(e);
+    }
   };
   render() {
     return (
@@ -69,7 +71,9 @@ class index extends Component {
             />
           </div>
         </div>
-        <button onClick={this.onAlert}>회원가입</button>
+        <button onClick={this.onAlert}>
+          {this.props.auth.pending ? '회원가입 중...' : '회원가입'}
+        </button>
         <style jsx>{`
           .formContainer {
             width: 60%;
@@ -123,6 +127,8 @@ class index extends Component {
 
             color: white;
             font-size: 1.5rem;
+
+            transition: all 0.5s ease-in;
           }
         `}</style>
       </div>

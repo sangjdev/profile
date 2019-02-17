@@ -1,6 +1,7 @@
 import React from 'react';
+import Router from 'next/router';
 
-const index = ({ signCompModalOpen, modalActions }) => {
+const index = ({ modal, modalActions }) => {
   return (
     <div className="modal signComp">
       <div className="modal-content">
@@ -14,7 +15,13 @@ const index = ({ signCompModalOpen, modalActions }) => {
         </span>
         <h2>회원가입이 완료되었습니다</h2>
         <p>아래 버튼을 누르면 이동합니다</p>
-        <button>프로필 보러가기</button>
+        <button
+          onClick={() => {
+            Router.push('/profile');
+          }}
+        >
+          프로필 보러가기
+        </button>
       </div>
       <style jsx global>{`
         .modal {
@@ -30,7 +37,7 @@ const index = ({ signCompModalOpen, modalActions }) => {
           text-align: center;
         }
         .signComp {
-          display: ${signCompModalOpen ? 'block' : 'none'};
+          display: ${modal.signCompModalOpen ? 'block' : 'none'};
         }
         .modal h2 {
           font-size: 2.5rem;

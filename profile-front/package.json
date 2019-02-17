@@ -14,11 +14,14 @@
     "express": "^4.16.4",
     "joi": "^14.3.1",
     "next": "^8.0.0",
+    "next-redux-wrapper": "^3.0.0-alpha.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
+    "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^6.1.0",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {

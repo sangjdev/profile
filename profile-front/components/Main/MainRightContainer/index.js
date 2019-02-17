@@ -1,10 +1,14 @@
 import React from 'react';
 import FormContainer from '../../FormContainer';
 
-const index = ({ modalActions }) => {
+const index = ({ modalActions, authActions, auth }) => {
   return (
     <div className="containerRight">
-      <FormContainer modalActions={modalActions} />
+      <FormContainer
+        modalActions={modalActions}
+        authActions={authActions}
+        auth={auth}
+      />
       <style jsx>{`
         .containerRight {
           width: 60%;

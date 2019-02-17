@@ -2,10 +2,6 @@ import React, { Component, Fragment } from 'react';
 import MainContainer from '../components/Main/MainContainer';
 
 class Index extends Component {
-  static async getInitialProps({ req }) {
-    const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
-    return { userAgent };
-  }
   render() {
     return (
       <Fragment>
