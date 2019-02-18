@@ -1,79 +1,25 @@
 import React, { Component } from 'react';
-
-// import * as joi from 'joi';
-
-// const schema = Joi.object()
-//   .keys({
-//     username: Joi.string()
-//       .alphanum()
-//       .min(3)
-//       .max(30)
-//       .required(),
-//     email: Joi.string().email({ minDomainAtoms: 2 }),
-//     password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
-//   })
-//   .with('username', 'email', 'password');
-
-// const result = Joi.validate(
-//   { username: 'abc', email: 'abc@naver.com', password: '12512bddsg' },
-//   schema
-// );
+import RegisterForm from '../RegisterForm';
 
 class index extends Component {
-  state = {
-    name: '',
-    email: '',
-    password: ''
-  };
-  onChangeName = e => {
-    this.setState({
-      name: e.target.value
-    });
-  };
-  onChangeEmail = e => {
-    this.setState({
-      email: e.target.value
-    });
-  };
-  onChangePassword = e => {
-    this.setState({
-      password: e.target.value
-    });
-  };
-  onAlert = async () => {
+  submit = async values => {
     const { modalActions, authActions } = this.props;
     try {
-      // 폼 유효성 검사
-      const res = await authActions.setRegister(1);
+      await authActions.setRegister(values.name, values.email, values.password);
       modalActions.openSignCompModal();
     } catch (e) {
       console.log(e);
     }
   };
   render() {
+    const { auth } = this.props;
     return (
       <div className="formContainer">
         <h1>프로필을 만들어 보세요</h1>
         {/* <p>소셜 로그인 두개</p> */}
         <p>사용하실 이메일을 입력해주세요</p>
-        <div className="formInputContainer">
-          <div className="formInput">
-            <input type="text" placeholder="Name" onChange={this.onChangeName} />
-          </div>
-          <div className="formInput">
-            <input type="email" placeholder="Email" onChange={this.onChangeEmail} />
-          </div>
-          <div className="formInput">
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={this.onChangePassword}
-            />
-          </div>
-        </div>
-        <button onClick={this.onAlert}>
-          {this.props.auth.pending ? '회원가입 중...' : '회원가입'}
-        </button>
+        <RegisterForm onSubmit={this.submit} auth={auth} />
+
         <style jsx>{`
           .formContainer {
             width: 60%;
@@ -90,45 +36,6 @@ class index extends Component {
             font-size: 1.5rem;
             color: #10316b;
             line-height: 1.8;
-          }
-          .formInputContainer {
-            margin: 2rem 0;
-          }
-          .formContainer .formInput {
-            width: 100%;
-          }
-          .formContainer .formInput input {
-            border: none;
-            outline: none;
-            width: 80%;
-            height: 4rem;
-            background-color: #dee1ec;
-            margin: 1rem;
-            padding: 0 2rem;
-            border-radius: 8px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #10316b;
-          }
-          .formContainer .formInput input:focus::placeholder {
-            transition: all 0.1s ease-in;
-            color: transparent;
-          }
-          .formContainer .formInput input::placeholder {
-            color: #5d7baf;
-          }
-          .formContainer button {
-            border: 1px solid white;
-            border-radius: 50px;
-            padding: 1rem 4rem;
-            background: #10316b;
-            outline: none;
-            cursor: pointer;
-
-            color: white;
-            font-size: 1.5rem;
-
-            transition: all 0.5s ease-in;
           }
         `}</style>
       </div>

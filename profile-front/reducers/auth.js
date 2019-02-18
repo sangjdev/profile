@@ -1,5 +1,5 @@
 import { handleActions, createAction } from 'redux-actions';
-import axios from 'axios';
+import axios from '../lib/request';
 
 // action type
 const SET_REGISTER = 'auth/SET_REGISTER';
@@ -8,14 +8,18 @@ const SET_REGISTER_FULFILLED = 'auth/SET_REGISTER_FULFILLED';
 const SET_REGISTER_REJECTED = 'auth/SET_REGISTER_REJECTED';
 
 // action creator
-export const setRegister = postId => ({
+export const setRegister = (name, email, password) => ({
   type: SET_REGISTER,
-  payload: getPostAPI(postId)
+  payload: setRegisterAPI(name, email, password)
 });
 
 // api call
-function getPostAPI(postId) {
-  return axios.get(`http://jsonplaceholder.typicode.com/posts/${postId}`);
+function setRegisterAPI(name, email, password) {
+  return axios.post('/auth/register', {
+    name: name,
+    email: email,
+    password: password
+  });
 }
 
 // init state
