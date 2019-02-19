@@ -1,12 +1,17 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import ProfileContainer from "../components/Profile/ProfileContainer";
 
 class profile extends Component {
   render() {
     return (
-      <div className="profileContainer">
-        <div className="summaryContainer">summary</div>
-        <div className="overViewContainer">overview</div>
-      </div>
+      <Fragment>
+        <ProfileContainer />
+        <style jsx global>{`
+          body {
+            margin: 0;
+          }
+        `}</style>
+      </Fragment>
     );
   }
 }
