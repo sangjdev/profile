@@ -1,27 +1,119 @@
 import React from 'react';
+import { Field, reduxForm } from 'redux-form';
 
-const index = ({ modal, modalActions }) => {
+const validate = values => {
+  const errors = {};
+  if (!values.email) {
+    errors.email = '필수 입력값입니다';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = '유효하지 않은 이메일 형식입니다';
+  }
+  if (!values.password) {
+    errors.password = '필수 입력값입니다';
+  }
+  return errors;
+};
+
+const renderField = ({
+  input,
+  label,
+  type,
+  modalActions,
+  meta: { touched, error, warning }
+}) => (
+  <div>
+    <div>
+      <input
+        {...input}
+        placeholder={label}
+        className="formField"
+        type={type}
+        onKeyDown={closeModal(modalActions)}
+      />
+      {touched &&
+        ((error && <span className="formFieldErr">{error}</span>) ||
+          (warning && <span className="formFieldWarn">{warning}</span>))}
+    </div>
+    <style jsx>{`
+      .formField {
+        border: none !important;
+        outline: none;
+        width: 80%;
+        height: 4rem;
+        background-color: #dee1ec;
+        margin: 1rem;
+        padding: 0 2rem;
+        border-radius: 8px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #10316b;
+      }
+      .formField:focus::placeholder {
+        transition: all 0.1s ease-in;
+        color: transparent;
+      }
+      .formField::placeholder {
+        color: #5d7baf;
+      }
+      .formFieldErr {
+        display: block;
+        color: #0b8457;
+        font-weight: 700;
+      }
+      .formFieldWarn {
+        display: block;
+        color: #0b8457;
+        font-weight: 700;
+      }
+    `}</style>
+  </div>
+);
+
+const closeModal = modalActions => {
+  console.log(modalActions);
+  // if (e.keyCode === 27) {
+  //   console.log(modalActions);
+  // }
+};
+
+let SignInModal = props => {
+  const { handleSubmit, modal, modalActions } = props;
   return (
     <div className="modal signIn">
-      <div className="modal-content">
-        <span
-          className="close"
-          onClick={() => {
-            modalActions.closeSignInModal();
-          }}
-        >
-          &times;
-        </span>
-        <h2>프로젝트 프로필 로그인</h2>
-        <p>로그인을 하시면 프로필을 볼 수 있습니다</p>
-        <div className="formInput">
-          <input type="email" placeholder="Email" />
+      <form onSubmit={handleSubmit}>
+        <div className="modal-content">
+          <span
+            className="close"
+            onClick={() => {
+              modalActions.closeSignInModal();
+            }}
+          >
+            &times;
+          </span>
+          <h2>프로젝트 프로필 로그인</h2>
+          <p>로그인을 하시면 프로필을 볼 수 있습니다</p>
+          <div className="formInput">
+            <Field
+              name="email"
+              component={renderField}
+              type="email"
+              label="Email"
+              modalActions={modalActions}
+            />
+            {/* <input type="email" placeholder="Email" /> */}
+          </div>
+          <div className="formInput">
+            <Field
+              name="password"
+              component={renderField}
+              type="password"
+              label="Password"
+              modalActions={modalActions}
+            />
+          </div>
+          <button>로그인</button>
         </div>
-        <div className="formInput">
-          <input type="password" placeholder="Password" />
-        </div>
-        <button>로그인</button>
-      </div>
+      </form>
       <style jsx global>{`
         .modal {
           position: fixed;
@@ -105,4 +197,9 @@ const index = ({ modal, modalActions }) => {
   );
 };
 
-export default index;
+SignInModal = reduxForm({
+  form: 'signIn',
+  validate
+})(SignInModal);
+
+export default SignInModal;

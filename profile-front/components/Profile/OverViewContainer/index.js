@@ -1,16 +1,15 @@
-import React from "react";
+import React from 'react';
+import TopBar from '../../TopBar';
 
 const index = () => {
   return (
     <div className="overViewContainer">
-      <h3>OverView</h3>
+      <TopBar text="OverView" />
       <style jsx>{`
         .overViewContainer {
-          min-height: 60vh;
-          padding: 1rem 1rem;
-          background-color: #dee1ec;
+          padding-left: 5rem;
         }
-      `}</style>{" "}
+      `}</style>
     </div>
   );
 };

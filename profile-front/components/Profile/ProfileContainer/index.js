@@ -1,18 +1,19 @@
-import React, { Component } from "react";
-import SummaryContainer from "../SummaryContainer";
-import OverViewContainer from "../OverViewContainer";
-
+import React, { Component } from 'react';
+import SummaryContainer from '../SummaryContainer';
+import OverViewContainer from '../OverViewContainer';
+import Tabs from '../../Tab/Tabs';
 class index extends Component {
   render() {
     return (
       <div className="profileContainer">
-        <SummaryContainer />
-        <OverViewContainer />
-        <style jsx>{`
-          .profileContainer {
-            width: 100%;
-          }
-        `}</style>
+        <Tabs>
+          <div label="프로필">
+            <SummaryContainer />
+          </div>
+          <div label="요약">
+            <OverViewContainer />
+          </div>
+        </Tabs>
       </div>
     );
   }

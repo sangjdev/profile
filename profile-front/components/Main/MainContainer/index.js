@@ -1,12 +1,13 @@
-import React from "react";
-import MainLeftContainer from "../MainLeftContainer";
-import MainRightContainer from "../MainRightContainer";
-import SignInModal from "../../Modal/SignInModal";
-import SignCompModal from "../../Modal/SignCompModal";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as modalActions from "../../../reducers/modal";
-import * as authActions from "../../../reducers/auth";
+import React from 'react';
+import MainLeftContainer from '../MainLeftContainer';
+import MainRightContainer from '../MainRightContainer';
+import SignInModal from '../../Modal/SignInModal';
+import SignInModalContainer from '../../Modal/SignInModalContainer';
+import SignCompModal from '../../Modal/SignCompModal';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as modalActions from '../../../reducers/modal';
+import * as authActions from '../../../reducers/auth';
 
 const index = props => {
   return (
@@ -17,7 +18,7 @@ const index = props => {
         authActions={props.AuthActions}
         auth={props.auth}
       />
-      <SignInModal modal={props.modal} modalActions={props.ModalActions} />
+      <SignInModalContainer modal={props.modal} modalActions={props.ModalActions} />
       <SignCompModal modal={props.modal} modalActions={props.ModalActions} />
       <style jsx>{`
         .container {

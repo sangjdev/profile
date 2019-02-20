@@ -1,34 +1,43 @@
-import React from "react";
-import TopBar from "../../TopBar";
+import React from 'react';
+import TopBar from '../../TopBar';
+
 const index = () => {
   return (
     <div className="summaryContainer">
-      <TopBar />
+      <TopBar text="프로필" />
 
       <div className="summaryForm">
-        <div className="summaryImage">
-          <img src="" alt="" />
-        </div>
         <div className="summaryInfo">
-          <div className="summaryName">hello world</div>
-          <div className="summaryEmail">email@naver.com</div>
+          <div className="summaryInput">
+            <span className="summaryLabel">이름</span>김철수
+          </div>
+          <div className="summaryInput">
+            <span className="summaryLabel">이메일</span>email@naver.com
+          </div>
         </div>
       </div>
       <style jsx>{`
         .summaryContainer {
-          min-height: 40vh;
-          padding: 1rem 1rem;
+          padding-left: 5rem;
         }
         .summaryForm {
+          margin: 3rem 0;
           display: flex;
         }
-        .summaryImage {
-          width: 150px;
-          height: 200px;
-          background-color: skyblue;
-        }
         .summaryInfo {
-          margin: 0 1rem;
+        }
+        .summaryInput {
+          margin-bottom: 1rem;
+          font-size: 1.3rem;
+          font-weight: bold;
+        }
+        .summaryLabel {
+          display: inline-block;
+          min-width: 3rem;
+          margin-right: 1rem;
+          color: gray;
+          font-size: 1rem;
+          font-weight: bold;
         }
       `}</style>
     </div>

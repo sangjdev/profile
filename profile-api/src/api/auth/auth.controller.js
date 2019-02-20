@@ -6,6 +6,7 @@ const models = require('../../models');
  */
 exports.register = async ctx => {
   const { name, email, password } = ctx.request.body;
+  // TODO: data check
   const { SECRET } = process.env;
   const hash = crypto
     .createHmac('sha256', SECRET)
@@ -21,7 +22,8 @@ exports.register = async ctx => {
       })
       .save();
   } catch (e) {
-    console.log('error', e);
+    ctx.status = 500;
+    return;
   }
-  ctx.body = 'register api get test';
+  ctx.status = 204;
 };
